@@ -37,6 +37,10 @@ else:
 #Display the title of the game and the name of the shape to look out for.
 
 
+thumby.display.fill(0)
+circleSprite.x = int((thumby.display.width/2) - (16/2))
+circleSprite.y = int((thumby.display.height/2) - (16/2))
+
 #Black out the screen, then flash a shape at random.
 while(1):
     thumby.display.fill(0) # Fill canvas to black
@@ -44,8 +48,10 @@ while(1):
     #Generate a random number to determine whether to display a shape.
     num = random.randint(0,9)
     if num == 0:
-        circleSprite.x = int((thumby.display.width/2) - (32/2))
-        circleSprite.y = int((thumby.display.height/2) - (32/2))
+        circleSprite.x = int((thumby.display.width/2) - (16/2))
+        circleSprite.y = int((thumby.display.height/2) - (16/2))
+        thumby.display.drawSprite(circleSprite)
+        thumby.display.update()
         
         break
 

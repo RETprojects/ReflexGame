@@ -46,13 +46,22 @@ while(1):
     thumby.display.fill(0) # Fill canvas to black
     
     #Generate a random number to determine whether to display a shape.
-    num = random.randint(0,9)
+    num = random.randint(0,100)
     if num == 0:
         circleSprite.x = int((thumby.display.width/2) - (16/2))
         circleSprite.y = int((thumby.display.height/2) - (16/2))
         thumby.display.drawSprite(circleSprite)
         thumby.display.update()
+        begin = time.ticks_ms()
         
+        break
+    
+#Get the time when the player reacts by pressing a button.
+while(1):
+    if thumby.buttonA.pressed():
+        end = time.ticks_ms()
+        thumby.display.fill(0) #get the shape off the screen
         break
 
 #Display the player's reaction time.
+react_time = end - begin #the reaction time in ms

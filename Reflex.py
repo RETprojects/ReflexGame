@@ -1,8 +1,8 @@
 import time
 import thumby
 import math
+import random
 
-# Set the FPS (without this call, the default fps is 30)
 thumby.display.setFPS(60)
 
 # BITMAP: width: 16, height: 16
@@ -23,11 +23,30 @@ bitmapSquare = bytearray([255,255,255,255,255,255,255,255,255,255,255,255,255,25
 
 squareSprite = thumby.Sprite(16, 16, bitmapSquare)
 
+react_time = 0
 #Randomly determine which shape the player should react to.
 shape_name = ""
-
+num = random.randint(0,2)
+if num == 0:
+    shape_name = "circle"
+elif num == 1:
+    shape_name = "triangle"
+else:
+    shape_name = "square"
 
 #Display the title of the game and the name of the shape to look out for.
 
 
 #Black out the screen, then flash a shape at random.
+while(1):
+    thumby.display.fill(0) # Fill canvas to black
+    
+    #Generate a random number to determine whether to display a shape.
+    num = random.randint(0,9)
+    if num == 0:
+        circleSprite.x = int((thumby.display.width/2) - (32/2))
+        circleSprite.y = int((thumby.display.height/2) - (32/2))
+        
+        break
+
+#Display the player's reaction time.

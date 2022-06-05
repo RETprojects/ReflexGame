@@ -34,12 +34,26 @@ elif num == 1:
 else:
     shape_name = "square"
 
-#Display the title of the game and the name of the shape to look out for.
-
-
+#Display the title of the game.
 thumby.display.fill(0)
-circleSprite.x = int((thumby.display.width/2) - (16/2))
-circleSprite.y = int((thumby.display.height/2) - (16/2))
+thumby.display.setFont("/lib/font8x8.bin", 8, 8, 1)
+thumby.display.drawText("REFLEX", 5, 5, 1)
+thumby.display.setFont("/lib/font5x7.bin", 5, 7, 1)
+thumby.display.drawText("press down", 5, 18, 1)
+thumby.display.update()
+
+#Once the button is pressed to start the game, display the name of the shape to look out for.
+while(1):
+    if thumby.buttonD.pressed():
+        thumby.display.drawText("press A for a", 5, 5, 1)
+        thumby.display.drawText(str(shape_name), 5, 18, 1)
+        thumby.display.drawText("press down", 5, 27, 1)
+        
+        while(1):
+            if thumby.buttonD.pressed():
+                break
+        
+        break
 
 #Black out the screen, then flash a shape at random.
 while(1):
@@ -54,14 +68,16 @@ while(1):
         thumby.display.update()
         begin = time.ticks_ms()
         
+        #Get the time when the player reacts by pressing a button.
+        while(1):
+            if thumby.buttonA.pressed():
+                end = time.ticks_ms()
+                thumby.display.fill(0) #get the shape off the screen
+                break
+        
         break
     
-#Get the time when the player reacts by pressing a button.
-while(1):
-    if thumby.buttonA.pressed():
-        end = time.ticks_ms()
-        thumby.display.fill(0) #get the shape off the screen
-        break
+
 
 #Display the player's reaction time.
 react_time = end - begin #the reaction time in ms

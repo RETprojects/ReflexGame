@@ -43,20 +43,22 @@ thumby.display.drawText("press down", 5, 18, 1)
 thumby.display.update()
 
 #Once the button is pressed to start the game, display the name of the shape to look out for.
-while(1):
+while True:
     if thumby.buttonD.pressed():
-        thumby.display.drawText("press A for a", 5, 5, 1)
-        thumby.display.drawText(str(shape_name), 5, 18, 1)
-        thumby.display.drawText("press down", 5, 27, 1)
-        
-        while(1):
-            if thumby.buttonD.pressed():
-                break
-        
+        break
+
+thumby.display.fill(0)
+thumby.display.drawText("press A for", 5, 5, 1)
+thumby.display.drawText("a " + str(shape_name), 5, 14, 1)
+thumby.display.drawText("press up", 5, 27, 1)
+thumby.display.update()
+
+while True:
+    if thumby.buttonU.pressed():
         break
 
 #Black out the screen, then flash a shape at random.
-while(1):
+while True:
     thumby.display.fill(0) # Fill canvas to black
     
     #Generate a random number to determine whether to display a shape.
@@ -68,16 +70,14 @@ while(1):
         thumby.display.update()
         begin = time.ticks_ms()
         
-        #Get the time when the player reacts by pressing a button.
-        while(1):
-            if thumby.buttonA.pressed():
-                end = time.ticks_ms()
-                thumby.display.fill(0) #get the shape off the screen
-                break
-        
         break
     
-
+#Get the time when the player reacts by pressing a button.
+while True:
+    if thumby.buttonA.pressed():
+        end = time.ticks_ms()
+        thumby.display.fill(0) #get the shape off the screen
+        break
 
 #Display the player's reaction time.
 react_time = end - begin #the reaction time in ms

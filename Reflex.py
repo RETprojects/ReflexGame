@@ -24,7 +24,7 @@ bitmapSquare = bytearray([255,255,255,255,255,255,255,255,255,255,255,255,255,25
 squareSprite = thumby.Sprite(16, 16, bitmapSquare)
 
 react_time = 0
-#Randomly determine which shape the player should react to.
+# Randomly determine which shape the player should react to.
 shape_name = ""
 num = random.randint(0,2)
 if num == 0:
@@ -34,7 +34,7 @@ elif num == 1:
 else:
     shape_name = "square"
 
-#Display the title of the game.
+# Display the title of the game.
 thumby.display.fill(0)
 thumby.display.setFont("/lib/font8x8.bin", 8, 8, 1)
 thumby.display.drawText("REFLEX", 5, 5, 1)
@@ -42,7 +42,7 @@ thumby.display.setFont("/lib/font5x7.bin", 5, 7, 1)
 thumby.display.drawText("press down", 5, 18, 1)
 thumby.display.update()
 
-#Once the button is pressed to start the game, display the name of the shape to look out for.
+# Once the button is pressed to start the game, display the name of the shape to look out for.
 while True:
     if thumby.buttonD.pressed():
         break
@@ -57,12 +57,12 @@ while True:
     if thumby.buttonU.pressed():
         break
 
-#Black out the screen, then flash a shape at random.
+# Black out the screen, then flash a shape at random.
 while True:
     thumby.display.fill(0) # Fill canvas to black
     thumby.display.update()
     
-    #Generate a random number to determine whether to display a shape.
+    # Generate a random number to determine whether to display a shape.
     num = random.randint(0,100)
     if num == 0:
         circleSprite.x = int((thumby.display.width/2) - (16/2))
@@ -73,14 +73,14 @@ while True:
         
         break
     
-#Get the time when the player reacts by pressing a button.
+# Get the time when the player reacts by pressing a button.
 while True:
     if thumby.buttonA.pressed():
         end = time.ticks_ms()
         thumby.display.fill(0) #get the shape off the screen
         break
 
-#Display the player's reaction time.
+# Display the player's reaction time.
 react_time = end - begin #the reaction time in ms
 thumby.display.drawText("reaction time:", 5, 5, 1)
 thumby.display.drawText(str(react_time) + "ms", 5, 14, 1)

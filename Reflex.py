@@ -60,6 +60,7 @@ while True:
 #Black out the screen, then flash a shape at random.
 while True:
     thumby.display.fill(0) # Fill canvas to black
+    thumby.display.update()
     
     #Generate a random number to determine whether to display a shape.
     num = random.randint(0,100)

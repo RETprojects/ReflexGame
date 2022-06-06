@@ -81,3 +81,5 @@ while True:
 
 #Display the player's reaction time.
 react_time = end - begin #the reaction time in ms
+thumby.display.drawText("reaction time:", 5, 5, 1)
+thumby.display.drawText(str(react_time) + "ms", 5, 14, 1)

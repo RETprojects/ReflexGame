@@ -68,14 +68,39 @@ while True:
     
     # Generate a random number to determine whether to display a shape.
     num = random.randint(0,100)
+    # If the random number is 0, draw a shape.
     if num == 0:
-        circleSprite.x = int((thumby.display.width/2) - (16/2))
-        circleSprite.y = int((thumby.display.height/2) - (16/2))
-        thumby.display.drawSprite(circleSprite)
-        thumby.display.update()
-        begin = time.ticks_ms()
-        
-        break
+        num = random.randint(0,2) # to decide which shape to display
+        if num == 0: # if 0, draw a circle
+            circleSprite.x = int((thumby.display.width/2) - (16/2))
+            circleSprite.y = int((thumby.display.height/2) - (16/2))
+            thumby.display.drawSprite(circleSprite)
+            thumby.display.update()
+            if shape_name == "circle":
+                begin = time.ticks_ms()
+                break
+            else:
+                time.sleep(1)
+        elif num == 1: # if 1, draw a triangle
+            triangleSprite.x = int((thumby.display.width/2) - (16/2))
+            triangleSprite.y = int((thumby.display.height/2) - (16/2))
+            thumby.display.drawSprite(triangleSprite)
+            thumby.display.update()
+            if shape_name == "triangle":
+                begin = time.ticks_ms()
+                break
+            else:
+                time.sleep(1)
+        else: # if 2, draw a square
+            squareSprite.x = int((thumby.display.width/2) - (16/2))
+            squareSprite.y = int((thumby.display.height/2) - (16/2))
+            thumby.display.drawSprite(squareSprite)
+            thumby.display.update()
+            if shape_name == "square":
+                begin = time.ticks_ms()
+                break
+            else:
+                time.sleep(1)
 
 # Get the time when the player reacts by pressing a button.
 while True:

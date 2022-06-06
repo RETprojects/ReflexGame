@@ -2,6 +2,7 @@ import time
 import thumby
 import math
 import random
+import sys
 
 thumby.display.setFPS(60)
 
@@ -39,7 +40,7 @@ thumby.display.fill(0)
 thumby.display.setFont("/lib/font8x8.bin", 8, 8, 1)
 thumby.display.drawText("REFLEX", 5, 5, 1)
 thumby.display.setFont("/lib/font5x7.bin", 5, 7, 1)
-thumby.display.drawText("press down", 5, 18, 1)
+thumby.display.drawText("D to play", 5, 18, 1)
 thumby.display.update()
 
 # Once the button is pressed to start the game, display the name of the shape to look out for.
@@ -50,7 +51,7 @@ while True:
 thumby.display.fill(0)
 thumby.display.drawText("press A for", 5, 5, 1)
 thumby.display.drawText("a " + str(shape_name), 5, 14, 1)
-thumby.display.drawText("press up", 5, 27, 1)
+thumby.display.drawText("U to start", 5, 27, 1)
 thumby.display.update()
 
 while True:
@@ -83,6 +84,12 @@ while True:
 
 # Display the player's reaction time.
 react_time = end - begin #the reaction time in ms
-thumby.display.drawText("reaction time:", 5, 5, 1)
+thumby.display.drawText("time:", 5, 5, 1)
 thumby.display.drawText(str(react_time) + "ms", 5, 14, 1)
+thumby.display.drawText("B to quit", 5, 23, 1)
 thumby.display.update()
+
+# Wait for the player to quit the game.
+while True:
+    if thumby.buttonB.pressed():
+        sys.exit() # exit the program

@@ -41,13 +41,16 @@ thumby.display.setFont("/lib/font8x8.bin", 8, 8, 1)
 thumby.display.drawText("REFLEX", 5, 5, 1)
 thumby.display.setFont("/lib/font5x7.bin", 5, 7, 1)
 thumby.display.drawText("D to play", 5, 18, 1)
+thumby.display.drawText("B to quit", 5, 27, 1)
 thumby.display.update()
 
-# Once the button is pressed to start the game, display the name of the shape to look out for.
 while True:
     if thumby.buttonD.pressed():
         break
+    if thumby.buttonB.pressed():
+        sys.exit() # exit the program
 
+# Once the button is pressed to start the game, display the name of the shape to look out for.
 thumby.display.fill(0)
 thumby.display.drawText("press A for", 5, 5, 1)
 thumby.display.drawText("a " + str(shape_name), 5, 14, 1)

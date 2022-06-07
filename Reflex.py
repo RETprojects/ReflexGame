@@ -1,6 +1,5 @@
 import time
 import thumby
-import math
 import random
 import sys
 
@@ -25,9 +24,12 @@ bitmapSquare = bytearray([255,255,255,255,255,255,255,255,255,255,255,255,255,25
 squareSprite = thumby.Sprite(16, 16, bitmapSquare)
 
 react_time = 0
+begin = 0
+end = 0
+
 # Randomly determine which shape the player should react to.
 shape_name = ""
-random.seed(time.ticks_ms())
+random.seed(time.ticks_ms()) # set the seed of the random number generator
 num = random.randint(0,2)
 if num == 0:
     shape_name = "circle"
@@ -78,10 +80,7 @@ while True:
             thumby.display.drawSprite(circleSprite)
             thumby.display.update()
             if shape_name == "circle":
-                begin = time.ticks_ms()
-                while True:
-                    if not thumby.buttonA.pressed():
-                        break
+                beginStopwatch()
                 break
             else:
                 time.sleep(1)
@@ -91,10 +90,7 @@ while True:
             thumby.display.drawSprite(triangleSprite)
             thumby.display.update()
             if shape_name == "triangle":
-                begin = time.ticks_ms()
-                while True:
-                    if not thumby.buttonA.pressed():
-                        break
+                beginStopwatch()
                 break
             else:
                 time.sleep(1)
@@ -104,10 +100,7 @@ while True:
             thumby.display.drawSprite(squareSprite)
             thumby.display.update()
             if shape_name == "square":
-                begin = time.ticks_ms()
-                while True:
-                    if not thumby.buttonA.pressed():
-                        break
+                beginStopwatch()
                 break
             else:
                 time.sleep(1)
@@ -131,3 +124,13 @@ thumby.display.update()
 while True:
     if thumby.buttonB.pressed():
         sys.exit() # exit the program
+
+# FUNCTIONS
+
+# This function begins recording the reaction time.
+# If the A button is still pressed, it will wait until button is released to begin recording.
+def beginStopwatch():
+    begin = time.ticks_ms()
+    while True:
+        if not thumby.buttonA.pressed():
+            break

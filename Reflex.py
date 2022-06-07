@@ -79,6 +79,9 @@ while True:
             thumby.display.update()
             if shape_name == "circle":
                 begin = time.ticks_ms()
+                while True:
+                    if not thumby.buttonA.pressed():
+                        break
                 break
             else:
                 time.sleep(1)
@@ -89,6 +92,9 @@ while True:
             thumby.display.update()
             if shape_name == "triangle":
                 begin = time.ticks_ms()
+                while True:
+                    if not thumby.buttonA.pressed():
+                        break
                 break
             else:
                 time.sleep(1)
@@ -99,6 +105,9 @@ while True:
             thumby.display.update()
             if shape_name == "square":
                 begin = time.ticks_ms()
+                while True:
+                    if not thumby.buttonA.pressed():
+                        break
                 break
             else:
                 time.sleep(1)

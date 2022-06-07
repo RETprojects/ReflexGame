@@ -5,6 +5,8 @@ import sys
 
 thumby.display.setFPS(60)
 
+# VARIABLES, SPRITES, ETC.
+
 # BITMAP: width: 16, height: 16
 bitmapCircle = bytearray([224,248,252,254,254,255,255,255,255,255,255,254,254,252,248,224,
            7,31,63,127,127,255,255,255,255,255,255,127,127,63,31,7])
@@ -26,6 +28,20 @@ squareSprite = thumby.Sprite(16, 16, bitmapSquare)
 react_time = 0
 begin = 0
 end = 0
+
+# FUNCTIONS
+
+# This function begins recording the reaction time.
+# If the A button is still pressed, it will wait until button is released to begin recording.
+def beginStopwatch():
+    global begin # this is needed to modify the global copy of begin
+    begin = time.ticks_ms()
+    while True:
+        if not thumby.buttonA.pressed():
+            break
+    return
+
+# GAMEPLAY
 
 # Randomly determine which shape the player should react to.
 shape_name = ""
@@ -124,13 +140,3 @@ thumby.display.update()
 while True:
     if thumby.buttonB.pressed():
         sys.exit() # exit the program
-
-# FUNCTIONS
-
-# This function begins recording the reaction time.
-# If the A button is still pressed, it will wait until button is released to begin recording.
-def beginStopwatch():
-    begin = time.ticks_ms()
-    while True:
-        if not thumby.buttonA.pressed():
-            break

@@ -27,6 +27,7 @@ squareSprite = thumby.Sprite(16, 16, bitmapSquare)
 react_time = 0
 # Randomly determine which shape the player should react to.
 shape_name = ""
+random.seed(time.ticks_ms())
 num = random.randint(0,2)
 if num == 0:
     shape_name = "circle"

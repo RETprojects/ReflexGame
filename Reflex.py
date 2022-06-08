@@ -41,6 +41,27 @@ def beginStopwatch():
             break
     return
 
+def drawCircle(x: int, y: int):
+    circleSprite.x = x
+    circleSprite.y = y
+    thumby.display.drawSprite(circleSprite)
+    thumby.display.update()
+    return
+
+def drawTriangle(x: int, y: int):
+    triangleSprite.x = x
+    triangleSprite.y = y
+    thumby.display.drawSprite(triangleSprite)
+    thumby.display.update()
+    return
+
+def drawSquare(x: int, y: int):
+    squareSprite.x = x
+    squareSprite.y = y
+    thumby.display.drawSprite(squareSprite)
+    thumby.display.update()
+    return
+
 # GAMEPLAY
 
 # Randomly determine which shape the player should react to.
@@ -91,30 +112,21 @@ while True:
     if num == 0:
         num = random.randint(0,2) # to decide which shape to display
         if num == 0: # if 0, draw a circle
-            circleSprite.x = int((thumby.display.width/2) - (16/2))
-            circleSprite.y = int((thumby.display.height/2) - (16/2))
-            thumby.display.drawSprite(circleSprite)
-            thumby.display.update()
+            drawCircle(int((thumby.display.width/2) - (16/2)), int((thumby.display.height/2) - (16/2)))
             if shape_name == "circle":
                 beginStopwatch()
                 break
             else:
                 time.sleep(1)
         elif num == 1: # if 1, draw a triangle
-            triangleSprite.x = int((thumby.display.width/2) - (16/2))
-            triangleSprite.y = int((thumby.display.height/2) - (16/2))
-            thumby.display.drawSprite(triangleSprite)
-            thumby.display.update()
+            drawTriangle(int((thumby.display.width/2) - (16/2)), int((thumby.display.height/2) - (16/2)))
             if shape_name == "triangle":
                 beginStopwatch()
                 break
             else:
                 time.sleep(1)
         else: # if 2, draw a square
-            squareSprite.x = int((thumby.display.width/2) - (16/2))
-            squareSprite.y = int((thumby.display.height/2) - (16/2))
-            thumby.display.drawSprite(squareSprite)
-            thumby.display.update()
+            drawSquare(int((thumby.display.width/2) - (16/2)), int((thumby.display.height/2) - (16/2)))
             if shape_name == "square":
                 beginStopwatch()
                 break

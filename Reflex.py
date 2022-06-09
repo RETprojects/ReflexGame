@@ -28,11 +28,12 @@ squareSprite = thumby.Sprite(16, 16, bitmapSquare)
 react_time = 0
 begin = 0
 end = 0
+shape_name = ""
 
 # FUNCTIONS
 
 # This function begins recording the reaction time.
-# If the A button is still pressed, it will wait until button is released to begin recording.
+# If the A button is still pressed, it will wait until A is released to begin recording.
 def beginStopwatch():
     global begin # this is needed to modify the global copy of begin
     begin = time.ticks_ms()
@@ -62,7 +63,23 @@ def drawSquare(x: int, y: int):
     thumby.display.update()
     return
 
+# Randomly choose a shape to use for the game.
+def chooseShape():
+    global shape_name
+    random.seed(time.ticks_ms()) # set the seed of the random number generator
+    num = random.randint(0,2)
+    if num == 0:
+        shape_name = "circle"
+    elif num == 1:
+        shape_name = "triangle"
+    else:
+        shape_name = "square"
+    return
+
 def playGame():
+    # Randomly determine which shape the player should react to.
+    chooseShape()
+    
     # Once the button is pressed to start the game, display the name of the shape to look out for.
     thumby.display.fill(0)
     thumby.display.drawText("press A for", 5, 5, 1)
@@ -118,7 +135,7 @@ def playGame():
     react_time = end - begin # the reaction time in ms
     thumby.display.drawText("time:", 5, 5, 1)
     thumby.display.drawText(str(react_time) + "ms", 5, 14, 1)
-    thumby.display.drawText("D to try again", 5, 23, 1)
+    thumby.display.drawText("D to retry", 5, 23, 1)
     thumby.display.drawText("B to quit", 5, 32, 1)
     thumby.display.update()
     
@@ -132,17 +149,6 @@ def playGame():
     return
 
 # GAMEPLAY
-
-# Randomly determine which shape the player should react to.
-shape_name = ""
-random.seed(time.ticks_ms()) # set the seed of the random number generator
-num = random.randint(0,2)
-if num == 0:
-    shape_name = "circle"
-elif num == 1:
-    shape_name = "triangle"
-else:
-    shape_name = "square"
 
 # Display the title of the game.
 thumby.display.fill(0)
